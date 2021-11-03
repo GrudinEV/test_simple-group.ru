@@ -12,10 +12,12 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class ServiceImpl implements Service{
+    public static String INPUT_FILES_PATH = null;
     private final DataReader dataReader;
     private final LogWriter logWriter;
 
-    public ServiceImpl() {
+    public ServiceImpl(String filePath) {
+        ServiceImpl.INPUT_FILES_PATH = filePath.length() > 0 ? filePath : "src/main/resources";
         this.dataReader = new JsonDataReaderImpl();
         this.logWriter = new InConsoleAndFileLogWriterImpl();
     }

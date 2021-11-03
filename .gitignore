@@ -6,7 +6,9 @@ classpath_IS_UNDEFINED/
 .git/
 .jpb
 .jpb/
+logs
+logs/
 Задание
 Задание/
-target/
 target
+target/

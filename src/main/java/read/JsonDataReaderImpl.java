@@ -6,6 +6,7 @@ import entity.Well;
 import entity.WellParameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import service.ServiceImpl;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -22,7 +23,7 @@ public class JsonDataReaderImpl implements DataReader{
     @Override
     public List<Department> readDepartments() {
         List<Department> list = null;
-        try (FileInputStream inputStream = new FileInputStream("src/main/resources/departments.json")) {
+        try (FileInputStream inputStream = new FileInputStream(/*"src/main/resources/departments.json"*/ServiceImpl.INPUT_FILES_PATH + "/departments.json")) {
             list = Arrays.asList(new ObjectMapper().readValue(inputStream, Department[].class));
         } catch (FileNotFoundException e) {
             LOGGER.error("Файл \"departments.json\" не найден!", e);
@@ -38,7 +39,7 @@ public class JsonDataReaderImpl implements DataReader{
     @Override
     public List<Well> readWells() {
         List<Well> list = null;
-        try (FileInputStream inputStream = new FileInputStream("src/main/resources/wells.json")) {
+        try (FileInputStream inputStream = new FileInputStream(/*"src/main/resources/wells.json"*/ServiceImpl.INPUT_FILES_PATH + "/wells.json")) {
             list = Arrays.asList(new ObjectMapper().readValue(inputStream, Well[].class));
         } catch (FileNotFoundException e) {
             LOGGER.error("Файл \"wells.json\" не найден!", e);
@@ -54,7 +55,7 @@ public class JsonDataReaderImpl implements DataReader{
     @Override
     public List<WellParameter> readWellParameters() {
         List<WellParameter> list = null;
-        try (FileInputStream inputStream = new FileInputStream("src/main/resources/wellParameters.json")) {
+        try (FileInputStream inputStream = new FileInputStream(/*"src/main/resources/wellParameters.json"*/ServiceImpl.INPUT_FILES_PATH + "/wellParameters.json")) {
             list = Arrays.asList(new ObjectMapper().readValue(inputStream, WellParameter[].class));
         } catch (FileNotFoundException e) {
             LOGGER.error("Файл \"wellParameters.json\" не найден!", e);
