@@ -51,6 +51,28 @@ public class Department {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Department that = (Department) o;
+
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (coordX != null ? !coordX.equals(that.coordX) : that.coordX != null) return false;
+        if (coordY != null ? !coordY.equals(that.coordY) : that.coordY != null) return false;
+        return radius != null ? radius.equals(that.radius) : that.radius == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (coordX != null ? coordX.hashCode() : 0);
+        result = 31 * result + (coordY != null ? coordY.hashCode() : 0);
+        result = 31 * result + (radius != null ? radius.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Department{" +
                 "name='" + name + '\'' +

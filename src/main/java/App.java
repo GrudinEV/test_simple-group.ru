@@ -10,5 +10,4 @@ public class App {
         service.createParamsWellsInRange(10, 12);
         service.createDepartmentsAndWells();
     }
-
 }

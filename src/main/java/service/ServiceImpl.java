@@ -48,16 +48,11 @@ public class ServiceImpl implements Service{
             mapParamsForCurrentWell = new HashMap<>();
             listParamsForCurrentWell = listParameters.stream().filter(x -> x.getWellID() == well.getId()).collect(Collectors.toList());
             for (WellParameter parameter : listParamsForCurrentWell) {
-                if (mapParamsForCurrentWell.containsKey(parameter.getParameterName())) {
-                    mapParamsForCurrentWell.get(parameter.getParameterName()).add(parameter.getValue());
-                } else {
-                    mapParamsForCurrentWell.put(parameter.getParameterName(), new ArrayList<>());
-                    mapParamsForCurrentWell.get(parameter.getParameterName()).add(parameter.getValue());
-                }
+                mapParamsForCurrentWell.computeIfAbsent(parameter.getParameterName(), v -> new ArrayList<>()).add(parameter.getValue());
             }
             mapWellsParams.put(well.getName(), mapParamsForCurrentWell);
-            logWriter.writeParamsWellsInRange(wellStart, wellEnd, mapWellsParams);
         }
+        logWriter.writeParamsWellsInRange(wellStart, wellEnd, mapWellsParams);
     }
 
     /**

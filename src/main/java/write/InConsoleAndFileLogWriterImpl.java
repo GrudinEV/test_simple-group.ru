@@ -5,8 +5,6 @@ import entity.Well;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
 import java.util.*;
 
 public class InConsoleAndFileLogWriterImpl implements LogWriter {
@@ -17,15 +15,13 @@ public class InConsoleAndFileLogWriterImpl implements LogWriter {
      */
     @Override
     public void writeUniqueParams(Set<String> setParametersName) {
-        try (PrintStream printStream = new PrintStream("src/main/resources/output/uniqueParameters.log")) {
             int i = 0;
+            StringBuilder sb = new StringBuilder();
+            sb.append("\n");
             for (String x : setParametersName) {
-                printStream.println(++i + ". " + x);
-                System.out.println(i + ". " + x);
+                sb.append(++i).append(". ").append(x).append("\n");
             }
-        } catch (FileNotFoundException e) {
-            LOGGER.error("Запись в файл не удалась!", e);
-        }
+            LOGGER.info(sb.toString());
     }
 
     /**
@@ -33,10 +29,10 @@ public class InConsoleAndFileLogWriterImpl implements LogWriter {
      */
     @Override
     public void writeParamsWellsInRange(int wellStart, int wellEnd, TreeMap<String, HashMap<String, ArrayList<Double>>> mapWellParams) {
-        try (PrintStream printStream = new PrintStream("src/main/resources/output/paramsFrom" + wellStart + "To" + wellEnd + "Wells.log")) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\n");
             for (Map.Entry<String, HashMap<String, ArrayList<Double>>> mapEntry : mapWellParams.entrySet()) {
-                System.out.println(mapEntry.getKey());
-                printStream.println(mapEntry.getKey());
+                sb.append(mapEntry.getKey()).append("\n");
                 int k = 1;
                 for (Map.Entry<String, ArrayList<Double>> entry : mapEntry.getValue().entrySet()) {
                     Double min = null, max = null, ave = null;
@@ -50,15 +46,11 @@ public class InConsoleAndFileLogWriterImpl implements LogWriter {
                         }
                     }
                     ave /= entry.getValue().size();
-                    System.out.printf("%d. %s: min - %.2f, max - %.2f, ave - %.2f\n", k, entry.getKey(), min, max, ave);
-                    printStream.printf("%d. %s: min - %.2f, max - %.2f, ave - %.2f\n", k++, entry.getKey(), min, max, ave);
+                    sb.append(String.format("%d. %s: min - %.2f, max - %.2f, ave - %.2f\n", k++, entry.getKey(), min, max, ave));
                 }
-                printStream.println();
-                System.out.println();
+                sb.append("\n");
             }
-        } catch (FileNotFoundException e) {
-            LOGGER.error("Запись в файл не удалась!", e);
-        }
+            LOGGER.info(sb.toString());
     }
 
     /**
@@ -66,9 +58,9 @@ public class InConsoleAndFileLogWriterImpl implements LogWriter {
      */
     @Override
     public void writeDepartmentsAndWells(Map<Department, List<Well>> mapDepartments) {
-        try (PrintStream printStream = new PrintStream(("src/main/resources/output/departmentsAndWells.log"))) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\n");
             for (Map.Entry<Department, List<Well>> entry : mapDepartments.entrySet()) {
-                StringBuilder sb = new StringBuilder();
                 sb.append(entry.getKey().getName()).append(":");
                 if (entry.getValue().isEmpty()) {
                     sb.append(" отсутствуют");
@@ -77,12 +69,9 @@ public class InConsoleAndFileLogWriterImpl implements LogWriter {
                         sb.append(" ").append(well.getName()).append(",");
                     }
                     sb.setLength(sb.length() - 1);
+                    sb.append("\n");
                 }
-                printStream.println(sb);
-                System.out.println(sb);
             }
-        } catch (FileNotFoundException e) {
-            LOGGER.error("Запись в файл не удалась!", e);
-        }
+            LOGGER.info(sb.toString());
     }
 }
