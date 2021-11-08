@@ -1,7 +1,11 @@
-package entity;
+package org.example.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Table(name = "well")
 public class Well {
     @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;

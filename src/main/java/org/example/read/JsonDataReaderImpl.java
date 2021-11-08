@@ -1,12 +1,13 @@
-package read;
+package org.example.read;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import entity.Department;
-import entity.Well;
-import entity.WellParameter;
+import org.example.entity.Department;
+import org.example.entity.Well;
+import org.example.entity.WellParameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import service.ServiceImpl;
+import org.example.service.ServiceImpl;
+import org.springframework.stereotype.Component;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

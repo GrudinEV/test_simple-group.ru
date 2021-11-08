@@ -1,25 +1,26 @@
-package service;
+package org.example.service;
 
-import entity.Department;
-import entity.Well;
-import entity.WellParameter;
-import read.DataReader;
-import read.JsonDataReaderImpl;
-import write.InConsoleAndFileLogWriterImpl;
-import write.LogWriter;
+import org.example.entity.Department;
+import org.example.entity.Well;
+import org.example.entity.WellParameter;
+import org.example.read.DataReader;
+import org.example.write.LogWriter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Component
 public class ServiceImpl implements Service{
-    public static String INPUT_FILES_PATH = null;
+    public static String INPUT_FILES_PATH = "src/main/resources";
     private final DataReader dataReader;
     private final LogWriter logWriter;
 
-    public ServiceImpl(String filePath) {
-        ServiceImpl.INPUT_FILES_PATH = filePath.length() > 0 ? filePath : "src/main/resources";
-        this.dataReader = new JsonDataReaderImpl();
-        this.logWriter = new InConsoleAndFileLogWriterImpl();
+    @Autowired
+    public ServiceImpl(DataReader dataReader, LogWriter logWriter) {
+        this.dataReader = dataReader;
+        this.logWriter = logWriter;
     }
 
     /**

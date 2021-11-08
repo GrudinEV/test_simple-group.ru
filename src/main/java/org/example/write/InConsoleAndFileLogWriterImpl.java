@@ -1,12 +1,14 @@
-package write;
+package org.example.write;
 
-import entity.Department;
-import entity.Well;
+import org.example.entity.Department;
+import org.example.entity.Well;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
+@Component
 public class InConsoleAndFileLogWriterImpl implements LogWriter {
     private static final Logger LOGGER = LoggerFactory.getLogger(InConsoleAndFileLogWriterImpl.class);
 

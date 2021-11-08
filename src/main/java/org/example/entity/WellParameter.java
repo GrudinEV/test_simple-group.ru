@@ -1,26 +1,26 @@
-package entity;
+package org.example.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class WellParameter {
-    @JsonProperty("wellId") private long wellID;
+    @JsonProperty("wellId") private int wellID;
     @JsonProperty("parameterName") private String parameterName;
     @JsonProperty("value") private double value;
 
     public WellParameter() {
     }
 
-    public WellParameter(long wellID, String parameterName, double value) {
+    public WellParameter(int wellID, String parameterName, double value) {
         this.wellID = wellID;
         this.parameterName = parameterName;
         this.value = value;
     }
 
-    public long getWellID() {
+    public int getWellID() {
         return wellID;
     }
 
-    public void setWellID(long wellID) {
+    public void setWellID(int wellID) {
         this.wellID = wellID;
     }
 

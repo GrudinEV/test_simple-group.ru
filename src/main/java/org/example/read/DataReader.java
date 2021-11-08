@@ -1,8 +1,8 @@
-package read;
+package org.example.read;
 
-import entity.Department;
-import entity.Well;
-import entity.WellParameter;
+import org.example.entity.Department;
+import org.example.entity.Well;
+import org.example.entity.WellParameter;
 
 import java.util.List;
 

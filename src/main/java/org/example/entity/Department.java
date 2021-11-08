@@ -1,8 +1,10 @@
-package entity;
+package org.example.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Department {
+    private int id;
+
     @JsonProperty("name") private String name;
     @JsonProperty("x") private Double coordX;
     @JsonProperty("y") private Double coordY;
@@ -11,11 +13,20 @@ public class Department {
     public Department() {
     }
 
-    public Department(String name, Double coordX, Double coordY, Double radius) {
+    public Department(int id, String name, Double coordX, Double coordY, Double radius) {
+        this.id = id;
         this.name = name;
         this.coordX = coordX;
         this.coordY = coordY;
         this.radius = radius;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -57,6 +68,7 @@ public class Department {
 
         Department that = (Department) o;
 
+        if (id != that.id) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (coordX != null ? !coordX.equals(that.coordX) : that.coordX != null) return false;
         if (coordY != null ? !coordY.equals(that.coordY) : that.coordY != null) return false;
@@ -65,7 +77,8 @@ public class Department {
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (coordX != null ? coordX.hashCode() : 0);
         result = 31 * result + (coordY != null ? coordY.hashCode() : 0);
         result = 31 * result + (radius != null ? radius.hashCode() : 0);
@@ -75,7 +88,8 @@ public class Department {
     @Override
     public String toString() {
         return "Department{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", coordX=" + coordX +
                 ", coordY=" + coordY +
                 ", radius=" + radius +

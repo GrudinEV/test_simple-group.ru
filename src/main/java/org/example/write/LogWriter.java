@@ -1,7 +1,7 @@
-package write;
+package org.example.write;
 
-import entity.Department;
-import entity.Well;
+import org.example.entity.Department;
+import org.example.entity.Well;
 
 import java.util.*;
 
