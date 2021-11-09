@@ -1,7 +1,10 @@
 package org.example.controllers;
 
+import org.example.adddata.AddedDataFromJsonToBd;
 import org.example.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +16,11 @@ public class MyController {
     @Autowired
     public MyController(Service service) {
         this.service = service;
+    }
+
+    @GetMapping("/init")
+    public void initBD() {
+        service.initBD();
     }
 
     @GetMapping("/unique")

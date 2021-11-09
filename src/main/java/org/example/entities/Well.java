@@ -1,16 +1,20 @@
-package org.example.entity;
+package org.example.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Table(name = "well")
+@Entity
+@Table(name = "WELL")
 public class Well {
+    @Id
+    @Column(name = "WELL_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty("id") private int id;
-    @JsonProperty("name") private String name;
-    @JsonProperty("x") private Double coordX;
-    @JsonProperty("y") private Double coordY;
+    @Column(name = "WELL_NAME") @JsonProperty("name") private String name;
+    @Column(name = "COORD_X") @JsonProperty("x") private Double coordX;
+    @Column(name = "COORD_Y") @JsonProperty("y") private Double coordY;
+    @Column(name = "DEPARTMENT_ID") private Integer departmentId;
 
     public Well() {
     }
@@ -20,6 +24,14 @@ public class Well {
         this.name = name;
         this.coordX = coordX;
         this.coordY = coordY;
+    }
+
+    public Integer getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
     }
 
     public int getId() {
@@ -61,6 +73,7 @@ public class Well {
                 ", name='" + name + '\'' +
                 ", coordX=" + coordX +
                 ", coordY=" + coordY +
+                ", departmentId=" + departmentId +
                 '}';
     }
 }
