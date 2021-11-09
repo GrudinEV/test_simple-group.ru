@@ -1,8 +1,7 @@
-package org.example.entity;
+package org.example.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table(name = "well")

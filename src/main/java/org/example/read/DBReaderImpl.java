@@ -1,8 +1,8 @@
 package org.example.read;
 
-import org.example.entity.Department;
-import org.example.entity.Well;
-import org.example.entity.WellParameter;
+import org.example.entities.Department;
+import org.example.entities.Well;
+import org.example.entities.WellParameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;

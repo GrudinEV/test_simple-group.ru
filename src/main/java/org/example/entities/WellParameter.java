@@ -1,11 +1,21 @@
-package org.example.entity;
+package org.example.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "WELL_PARAMETER")
 public class WellParameter {
-    @JsonProperty("wellId") private int wellID;
-    @JsonProperty("parameterName") private String parameterName;
-    @JsonProperty("value") private double value;
+    @Id
+    @Column(name = "WELL_PARAMETER_ID")
+    @GenericGenerator(name = "generator", strategy = "increment")
+    @GeneratedValue(generator = "generator")
+    private Integer id;
+    @Column(name = "WELL_ID") @JsonProperty("wellId") private int wellID;
+    @Column(name = "PARAMETER_NAME") @JsonProperty("parameterName") private String parameterName;
+    @Column(name = "PARAMETER_VALUE") @JsonProperty("value") private double value;
 
     public WellParameter() {
     }

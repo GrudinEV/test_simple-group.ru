@@ -1,14 +1,23 @@
-package org.example.entity;
+package org.example.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "DEPARTMENT")
 public class Department {
+    @Id
+    @Column(name = "DEPARTMENT_ID")
+    @GenericGenerator(name = "generator", strategy = "increment")
+    @GeneratedValue(generator = "generator")
     private int id;
 
-    @JsonProperty("name") private String name;
-    @JsonProperty("x") private Double coordX;
-    @JsonProperty("y") private Double coordY;
-    @JsonProperty("radius") private Double radius;
+    @Column(name = "DEPARTMENT_NAME") @JsonProperty("name") private String name;
+    @Column(name = "COORD_X") @JsonProperty("x") private Double coordX;
+    @Column(name = "COORD_Y") @JsonProperty("y") private Double coordY;
+    @Column(name = "RADIUS") @JsonProperty("radius") private Double radius;
 
     public Department() {
     }

@@ -1,7 +1,7 @@
 package org.example.write;
 
-import org.example.entity.Department;
-import org.example.entity.Well;
+import org.example.entities.Department;
+import org.example.entities.Well;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
