@@ -4,7 +4,6 @@ import org.example.entities.Department;
 import org.example.entities.Well;
 import org.example.entities.WellParameter;
 import org.example.read.DataReader;
-import org.example.read.JsonDataReaderImpl;
 import org.example.repositories.DepartmentRepository;
 import org.example.repositories.WellParameterRepository;
 import org.example.repositories.WellRepository;
@@ -15,15 +14,17 @@ import java.util.List;
 
 @Component
 public class AddedDataFromJsonToBd {
-    private final DataReader dataReader = new JsonDataReaderImpl();
+    private final DataReader dataReader;
     private final DepartmentRepository departmentRepository;
     private final WellRepository wellRepository;
     private final WellParameterRepository wellParameterRepository;
 
     @Autowired
-    public AddedDataFromJsonToBd(WellParameterRepository wellParameterRepository,
+    public AddedDataFromJsonToBd(DataReader dataReader,
+                                 WellParameterRepository wellParameterRepository,
                                  WellRepository wellRepository,
                                  DepartmentRepository departmentRepository) {
+        this.dataReader = dataReader;
         this.wellParameterRepository = wellParameterRepository;
         this.departmentRepository = departmentRepository;
         this.wellRepository = wellRepository;
@@ -32,7 +33,6 @@ public class AddedDataFromJsonToBd {
     public void insertDepartments() {
         List<Department> departments = dataReader.readDepartments();
         departmentRepository.saveAll(departments);
-        departmentRepository.flush();
     }
 
     public void insertWells() {
@@ -48,13 +48,11 @@ public class AddedDataFromJsonToBd {
                 }
             }
             wellRepository.save(well);
-            wellRepository.flush();
         }
     }
 
     public void insertWellsParameter() {
         List<WellParameter> wellParameters = dataReader.readWellParameters();
         wellParameterRepository.saveAll(wellParameters);
-        wellParameterRepository.flush();
     }
 }

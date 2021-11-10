@@ -20,10 +20,12 @@ public class WellParameter {
     public WellParameter() {
     }
 
-    public WellParameter(int wellID, String parameterName, double value) {
-        this.wellID = wellID;
-        this.parameterName = parameterName;
-        this.value = value;
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public int getWellID() {
@@ -53,7 +55,8 @@ public class WellParameter {
     @Override
     public String toString() {
         return "WellParameter{" +
-                "wellID=" + wellID +
+                "id=" + id +
+                ", wellID=" + wellID +
                 ", parameterName='" + parameterName + '\'' +
                 ", value=" + value +
                 '}';

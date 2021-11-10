@@ -1,13 +1,14 @@
 package org.example.controllers;
 
-import org.example.adddata.AddedDataFromJsonToBd;
+import org.example.entities.Department;
+import org.example.entities.Well;
 import org.example.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.*;
 
 @RestController
 public class MyController {
@@ -18,24 +19,19 @@ public class MyController {
         this.service = service;
     }
 
-    @GetMapping("/init")
-    public void initBD() {
-        service.initBD();
-    }
-
     @GetMapping("/unique")
-    public void createUniqueParams() {
-        service.createUniqueParams();
+    public Set<String> createUniqueParams() {
+        return service.createUniqueParams();
     }
 
-    @GetMapping("/well")
-    public void createParamsWellsInRange(@RequestParam(name = "wellStart", defaultValue = "10") Integer wellStart,
-                                         @RequestParam(name = "wellEnd", defaultValue = "30") Integer wellEnd) {
-        service.createParamsWellsInRange(wellStart, wellEnd);
+    @GetMapping("/wells")
+    public TreeMap<String, HashMap<String, ArrayList<Double>>> createParamsWellsInRange(@RequestParam(name = "wellStart", defaultValue = "10") Integer wellStart,
+                                                                                        @RequestParam(name = "wellEnd", defaultValue = "30") Integer wellEnd) {
+        return service.createParamsWellsInRange(wellStart, wellEnd);
     }
 
     @GetMapping("/dep")
-    public void createDepartmentsAndWells() {
-        service.createDepartmentsAndWells();
+    public Map<Department, List<Well>> createDepartmentsAndWells() {
+        return service.createDepartmentsAndWells();
     }
 }

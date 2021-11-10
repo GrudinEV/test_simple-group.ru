@@ -7,6 +7,7 @@ import org.example.entities.WellParameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.example.service.ServiceImpl;
+import org.springframework.stereotype.Component;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+@Component
 public class JsonDataReaderImpl implements DataReader{
     private static final Logger LOGGER = LoggerFactory.getLogger(JsonDataReaderImpl.class);
 
@@ -23,7 +25,7 @@ public class JsonDataReaderImpl implements DataReader{
     @Override
     public List<Department> readDepartments() {
         List<Department> list = null;
-        try (FileInputStream inputStream = new FileInputStream(/*"src/main/resources/departments.json"*/ServiceImpl.INPUT_FILES_PATH + "/departments.json")) {
+        try (FileInputStream inputStream = new FileInputStream(ServiceImpl.INPUT_FILES_PATH + "/departments.json")) {
             list = Arrays.asList(new ObjectMapper().readValue(inputStream, Department[].class));
         } catch (FileNotFoundException e) {
             LOGGER.error("Файл \"departments.json\" не найден!", e);
@@ -39,7 +41,7 @@ public class JsonDataReaderImpl implements DataReader{
     @Override
     public List<Well> readWells() {
         List<Well> list = null;
-        try (FileInputStream inputStream = new FileInputStream(/*"src/main/resources/wells.json"*/ServiceImpl.INPUT_FILES_PATH + "/wells.json")) {
+        try (FileInputStream inputStream = new FileInputStream(ServiceImpl.INPUT_FILES_PATH + "/wells.json")) {
             list = Arrays.asList(new ObjectMapper().readValue(inputStream, Well[].class));
         } catch (FileNotFoundException e) {
             LOGGER.error("Файл \"wells.json\" не найден!", e);
@@ -55,7 +57,7 @@ public class JsonDataReaderImpl implements DataReader{
     @Override
     public List<WellParameter> readWellParameters() {
         List<WellParameter> list = null;
-        try (FileInputStream inputStream = new FileInputStream(/*"src/main/resources/wellParameters.json"*/ServiceImpl.INPUT_FILES_PATH + "/wellParameters.json")) {
+        try (FileInputStream inputStream = new FileInputStream(ServiceImpl.INPUT_FILES_PATH + "/wellParameters.json")) {
             list = Arrays.asList(new ObjectMapper().readValue(inputStream, WellParameter[].class));
         } catch (FileNotFoundException e) {
             LOGGER.error("Файл \"wellParameters.json\" не найден!", e);

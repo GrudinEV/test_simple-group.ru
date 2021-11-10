@@ -19,13 +19,6 @@ public class Well {
     public Well() {
     }
 
-    public Well(int id, String name, Double coordX, Double coordY) {
-        this.id = id;
-        this.name = name;
-        this.coordX = coordX;
-        this.coordY = coordY;
-    }
-
     public Integer getDepartmentId() {
         return departmentId;
     }

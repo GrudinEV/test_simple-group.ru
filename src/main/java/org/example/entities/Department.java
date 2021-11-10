@@ -1,7 +1,6 @@
 package org.example.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -19,14 +18,6 @@ public class Department {
     @Column(name = "RADIUS") @JsonProperty("radius") private Double radius;
 
     public Department() {
-    }
-
-    public Department(int id, String name, Double coordX, Double coordY, Double radius) {
-        this.id = id;
-        this.name = name;
-        this.coordX = coordX;
-        this.coordY = coordY;
-        this.radius = radius;
     }
 
     public int getId() {
